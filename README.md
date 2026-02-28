@@ -1,30 +1,34 @@
-# Niger Secure Command (NSC) - Citizen App (React Native)
+# Niger Secure Command (NSC) - Citizen App (Expo SDK 54)
 
-Production-grade **Android-first citizen application** for emergency response and safety intelligence in Nigeria, piloted in Minna metropolis.
+Android-first emergency response and safety intelligence application for Minna metropolis pilot, designed for Nigeria-wide scale.
 
-## What is included
+## Expo/Node compatibility target
 
-This repository provides complete source code for a high-capability citizen app with:
+This codebase is aligned to **Expo SDK 54** and modern React Native.
 
-- One-tap SOS with long-press protection and incident classification.
-- Automatic device context capture (GPS, time, battery, network state).
-- Online API dispatch + offline SMS fallback + queued retry.
-- Live security heat map UI for incident awareness.
-- Nearest responder matching (police, NSCDC, vigilante, hospitals).
-- Safety Circle / Travel Guardian experiences.
-- Discreet mode and life-saving control toggles.
-- Predictive risk alert cards and governor-level KPI summaries.
-- Scalable architecture notes for handling 1M+ active users.
+- Expo: `~54.0.0`
+- React Native: `0.81.0`
+- React: `19.1.0`
+- Recommended Node for Expo workflows: **Node 20 LTS**
 
-## Quick start
+> Node 24 can work for some tooling, but Node 20 LTS remains safer for Expo CLI stability.
 
-```bash
-npm install
-npm run start
-npm run android
-```
+## Citizen features covered
 
-## App structure
+- One-tap SOS with long-press safety guard
+- Multi-channel delivery (API + offline SMS fallback queue)
+- Auto-capture of GPS, battery level, network state and timestamp
+- Discreet mode toggle and voice SOS command phrase
+- Nearest security agency matching (Police, NSCDC, Hospital, Fire Service)
+- Security heat map with active/recent/past/safe zones
+- Community Safety Circle and group escalation model
+- Travel Guardian behaviors (safe route, geofence check-ins, auto escalation)
+- Evidence and verification concepts (verified / unconfirmed / false)
+- Blood emergency and child emergency mode controls
+- Safe location finder (police, hospital, secure transit points)
+- Governor/command-center metrics and risk snapshots
+
+## Project structure
 
 ```text
 app/
@@ -34,11 +38,12 @@ src/
   components/
   constants/
   features/
+    alerts/
     dashboard/
-    sos/
     heatmap/
     operations/
     profile/
+    sos/
   navigation/
   services/
   store/
@@ -46,31 +51,19 @@ src/
   types/
 ```
 
-## Enterprise-scale architecture (1M+ users)
+## Run locally
 
-To run NSC at state/national scale, pair this client with:
+```bash
+npm install
+npm run start
+npm run android
+```
 
-1. **API Gateway + regional edge POPs** for low latency.
-2. **Auth service** (device + citizen identity with adaptive risk checks).
-3. **Incident ingestion service** writing to durable queue (Kafka/SQS/PubSub).
-4. **Real-time dispatch engine** routing to nearest agencies by geofence.
-5. **SMS/USSD fallback gateway** for low-connectivity local government areas.
-6. **Geo-intelligence pipeline** for hotspot and risk-time forecasting.
-7. **Evidence vault** with KMS encryption, immutable chain of custody.
-8. **Ops analytics warehouse** for governor command-center insights.
-9. **Observability stack** (distributed tracing, SIEM, anomaly detection).
-10. **Data governance** aligned with NDPA and emergency response protocols.
+## Scale strategy for 1M+ users
 
-## Nigeria-focused enhancement backlog
-
-- USSD panic command integration for feature phones.
-- Multi-language support: English, Hausa, Nupe, Yoruba, Igbo, Pidgin.
-- Community volunteer validation network.
-- Mass incident broadcast across radio/TV emergency channels.
-- Integration with NIN-based identity verification (policy-controlled).
-- Drone/CCTV ingest into command center.
-- Traffic-aware ambulance dispatch using FRSC feeds.
-
----
-
-Built to save lives, reduce response time, and improve trust in public safety systems.
+- Edge API gateway + georegional routing
+- Event-driven incident ingestion queues
+- SMS/USSD fallback for low-connectivity zones
+- Immutable evidence vault and audit chain
+- Risk-model pipeline with false-report defenses
+- Governor command-center analytics and SLA monitoring

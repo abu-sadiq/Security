@@ -20,3 +20,10 @@ export const sendSMSFallback = async (payload: SOSPayload, shortCode = '767') =>
   const locationLink = `https://maps.google.com/?q=${payload.location.latitude},${payload.location.longitude}`;
   return `SMS queued to ${shortCode}: ${payload.incidentType} at ${locationLink}`;
 };
+
+export const verifyIncident = async () => {
+  return {
+    status: 'verified',
+    confidence: 0.82
+  };
+};

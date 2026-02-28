@@ -4,6 +4,7 @@ export const getPredictiveRiskSummary = () => ({
   recommendations: [
     'Avoid isolated roads after sunset',
     'Enable Travel Guardian Mode',
-    'Share route with Safety Circle'
+    'Share route with Safety Circle',
+    'Use verified commercial routes and active checkpoints'
   ]
 });

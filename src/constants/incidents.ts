@@ -1,4 +1,6 @@
-export const INCIDENT_TYPES = [
+import { IncidentType } from '@/types';
+
+export const INCIDENT_TYPES: IncidentType[] = [
   'Bandit attack',
   'Kidnapping',
   'Theft',
@@ -6,10 +8,8 @@ export const INCIDENT_TYPES = [
   'Fire',
   'Medical emergency',
   'Road accident',
-  'Gender-based violence',
   'Missing person',
+  'Gender-based violence',
   'Suspicious activity',
   'Other'
-] as const;
-
-export type IncidentType = (typeof INCIDENT_TYPES)[number];
+];

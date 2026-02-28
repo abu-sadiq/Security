@@ -11,7 +11,8 @@ const severityColor: Record<string, string> = {
 };
 
 export const HeatMapScreen = () => {
-  const zones = useNscStore((s) => s.heatZones);
+  const zones = useNscStore((state) => state.heatZones);
+  const activeCount = zones.filter((zone) => zone.severity === 'active').length;
 
   return (
     <View style={styles.container}>
@@ -19,21 +20,22 @@ export const HeatMapScreen = () => {
         style={StyleSheet.absoluteFill}
         initialRegion={{ latitude: 9.6139, longitude: 6.5569, latitudeDelta: 0.15, longitudeDelta: 0.15 }}
       >
-        {zones.map((z) => (
+        {zones.map((zone) => (
           <Circle
-            key={z.id}
-            center={z.center}
+            key={zone.id}
+            center={zone.center}
             radius={600}
-            fillColor={`${severityColor[z.severity]}55`}
-            strokeColor={severityColor[z.severity]}
+            fillColor={`${severityColor[zone.severity]}55`}
+            strokeColor={severityColor[zone.severity]}
             strokeWidth={2}
           />
         ))}
-        <Marker coordinate={{ latitude: 9.6139, longitude: 6.5569 }} title="Minna Center" />
+        <Marker coordinate={{ latitude: 9.6139, longitude: 6.5569 }} title="Minna Center" description="Pilot command radius" />
       </MapView>
       <View style={styles.legend}>
         <Text style={styles.title}>Live Security Heat Map</Text>
         <Text style={styles.text}>🔴 Active • 🟠 Recent • 🟡 Past • 🟢 Safe</Text>
+        <Text style={styles.text}>Active zones now: {activeCount}</Text>
       </View>
     </View>
   );

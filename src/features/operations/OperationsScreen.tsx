@@ -12,17 +12,18 @@ const safeLocations = [
 ];
 
 export const OperationsScreen = () => {
-  const { trustedCircle, agencies } = useNscStore();
+  const { trustedCircle, agencies, featureToggles } = useNscStore();
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <SectionTitle title="Field Operations" />
 
       <AppCard>
         <Text style={styles.title}>Nearest Agency Matching</Text>
-        {agencies.map((a) => (
-          <View key={a.id} style={styles.row}>
-            <Text style={styles.text}>{a.name} ({a.type}) • {a.status}</Text>
-            <Text onPress={() => Linking.openURL(`tel:${a.phone}`)} style={styles.action}>Call</Text>
+        {agencies.map((agency) => (
+          <View key={agency.id} style={styles.row}>
+            <Text style={styles.text}>{agency.name} ({agency.type}) • {agency.status}</Text>
+            <Text onPress={() => Linking.openURL(`tel:${agency.phone}`)} style={styles.action}>Call</Text>
           </View>
         ))}
       </AppCard>
@@ -30,14 +31,24 @@ export const OperationsScreen = () => {
       <AppCard>
         <Text style={styles.title}>Community Safety Circle</Text>
         {trustedCircle.map((member) => (
-          <Text key={member.id} style={styles.text}>• {member.name} ({member.phone})</Text>
+          <Text key={member.id} style={styles.text}>• {member.name} ({member.relationship}) — {member.phone}</Text>
         ))}
-        <Text style={styles.hint}>Live travel location sharing, group SOS, and auto-check-ins enabled.</Text>
+        <Text style={styles.hint}>Group SOS, live route sharing and automatic check-in escalation are active.</Text>
       </AppCard>
 
       <AppCard>
         <Text style={styles.title}>Travel Guardian Mode</Text>
-        <Text style={styles.text}>Safe route scoring, geofenced check-ins, fake incoming call escape, and no-response auto-escalation.</Text>
+        <Text style={styles.text}>• Destination safety scoring</Text>
+        <Text style={styles.text}>• Geofenced check-ins every 15 mins</Text>
+        <Text style={styles.text}>• Fake incoming call escape option</Text>
+        <Text style={styles.text}>• No-response triggers auto-SOS</Text>
+      </AppCard>
+
+      <AppCard>
+        <Text style={styles.title}>Evidence & Verification</Text>
+        <Text style={styles.text}>• Encrypted photo/video/audio upload</Text>
+        <Text style={styles.text}>• Incident verification engine (verified/unconfirmed/false)</Text>
+        <Text style={styles.text}>• Chain-of-custody audit trail for prosecution readiness</Text>
       </AppCard>
 
       <AppCard>
@@ -48,8 +59,10 @@ export const OperationsScreen = () => {
       </AppCard>
 
       <AppCard>
-        <Text style={styles.title}>Life-Saving Enhancements</Text>
-        <Text style={styles.text}>🩸 Blood donor broadcast • 👶 Missing child rapid alert • 🚑 Hospital auto-notify • 🎤 Voice SOS trigger • 📸 Secure evidence vault</Text>
+        <Text style={styles.title}>Life-Saving Broadcasts</Text>
+        <Text style={styles.text}>🩸 Blood emergency broadcast: {featureToggles.bloodEmergencyBroadcast ? 'Enabled' : 'Disabled'}</Text>
+        <Text style={styles.text}>👶 Child emergency mode: {featureToggles.childEmergencyMode ? 'Enabled' : 'Disabled'}</Text>
+        <Text style={styles.text}>🚑 Hospital and ambulance auto-notify</Text>
       </AppCard>
     </ScrollView>
   );

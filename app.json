@@ -3,9 +3,10 @@
     "name": "Niger Secure Command",
     "slug": "niger-secure-command",
     "scheme": "nsc",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#081226"
@@ -17,12 +18,12 @@
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION",
         "RECORD_AUDIO",
-        "CAMERA",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE",
-        "SEND_SMS"
+        "CAMERA"
       ]
     },
-    "plugins": ["expo-router", "expo-location", "expo-camera"]
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": ["expo-router", "expo-location", "expo-camera", "expo-secure-store"]
   }
 }

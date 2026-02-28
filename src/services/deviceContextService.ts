@@ -8,14 +8,14 @@ export const getDeviceEmergencyContext = async () => {
     Network.getNetworkStateAsync().catch(() => null)
   ]);
 
-  const locationPerm = await Location.requestForegroundPermissionsAsync();
-  const location = locationPerm.status === 'granted'
+  const locationPermission = await Location.requestForegroundPermissionsAsync();
+  const location = locationPermission.status === 'granted'
     ? await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced })
     : null;
 
   return {
     batteryLevel: battery,
-    networkStatus: networkState?.isConnected ? 'online' : 'offline',
+    networkStatus: networkState?.isConnected ? 'online' as const : 'offline' as const,
     location: location
       ? { latitude: location.coords.latitude, longitude: location.coords.longitude }
       : { latitude: 9.6139, longitude: 6.5569 }

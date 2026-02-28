@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Niger Secure Command",
+    "slug": "niger-secure-command",
+    "scheme": "nsc",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#081226"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "android": {
+      "package": "com.nigersc.citizen",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "RECORD_AUDIO",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "SEND_SMS"
+      ]
+    },
+    "plugins": ["expo-router", "expo-location", "expo-camera"]
+  }
+}
